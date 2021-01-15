@@ -28,7 +28,7 @@ _LOGGER = logging.getLogger(__name__)
 AUTH_CALLBACK_NAME = 'api:spotify'
 AUTH_CALLBACK_PATH = '/api/spotify'
 
-
+# Read in configuration settings
 CONF_CLIENT_ID = 'client_id'
 CONF_CLIENT_SECRET = 'client_secret'
 CONF_CACHE_PATH = 'cache_path'
@@ -36,16 +36,17 @@ CONF_NUMBER_OF_PLAYLISTS = 'number_of_playlists'
 CONF_OFFSET = 'offset'
 CONF_NAME = 'name'
 
+# Configuratior options
 CONFIGURATOR_DESCRIPTION = 'To link your Spotify account, ' \
                            'click the link, login, and authorize:'
 CONFIGURATOR_LINK_NAME = 'Link Spotify account'
 CONFIGURATOR_SUBMIT_CAPTION = 'I authorized successfully'
 
 
-DEFAULT_NAME = "Spotify Playlist"
-DEFAULT_NUMBER_OF_PLAYLISTS = 6
-
+# Default values
 DOMAIN = 'spotify-playlist-sensor'
+DEFAULT_NAME = "SpotifyPlaylist"
+DEFAULT_NUMBER_OF_PLAYLISTS = 6
 DEFAULT_OFFSET = 0
 DEFAULT_CACHE_PATH = '.spotify-playlist-token-cache'
 
@@ -53,7 +54,7 @@ DEFAULT_CACHE_PATH = '.spotify-playlist-token-cache'
 
 ICON = 'mdi:spotify'
 
-SCAN_INTERVAL = timedelta(hours=1)
+SCAN_INTERVAL = timedelta(minutes=1)
 
 SCOPE = 'user-read-playback-state user-modify-playback-state user-read-private playlist-read-private'
 
@@ -196,18 +197,19 @@ class SpotifyPlaylistSensor(Entity):
 
         _LOGGER.info("updating playlists")
         for i,playlist in enumerate(playlists['items']):
+            id = i 
             name = playlist['name']
             try: 
                 image = playlist['images'][0]['url']
             except:
                 image = ''
             uri = playlist['uri']
-            id = i 
-            self.hass.data[self._name][] = {}
-            self.hass.data[self._name][i]['name'] = name
-            self.hass.data[self._name][i]['image'] = image
-            self.hass.data[self._name][i]['uri'] = uri
-            self.hass.data[self._name][i]['id'] = id
+
+            # Set attribute values for each playlist
+            self.hass.data[self._name][id] = {}
+            self.hass.data[self._name][id]['name'] = name
+            self.hass.data[self._name][id]['image'] = image
+            self.hass.data[self._name][id]['uri'] = uri
 
     @property
     def name(self):
