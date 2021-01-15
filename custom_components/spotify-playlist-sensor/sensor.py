@@ -50,7 +50,6 @@ DEFAULT_OFFSET = 0
 DEFAULT_CACHE_PATH = '.spotify-playlist-token-cache'
 
 
-DOMAIN = 'spotify-playlist-sensor'
 
 ICON = 'mdi:spotify'
 
@@ -203,8 +202,8 @@ class SpotifyPlaylistSensor(Entity):
             except:
                 image = ''
             uri = playlist['uri']
-            id = i
-            self.hass.data[self._name][i] = i
+            id = i + 5
+            self.hass.data[self._name][i] = {}
             self.hass.data[self._name][i]['name'] = name
             self.hass.data[self._name][i]['image'] = image
             self.hass.data[self._name][i]['uri'] = uri
