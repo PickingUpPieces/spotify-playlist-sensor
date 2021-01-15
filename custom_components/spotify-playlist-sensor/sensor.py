@@ -22,7 +22,7 @@ from homeassistant.core import callback
 DEPENDENCIES = ['http']
 REQUIREMENTS = ['spotipy==2.16.0']
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'
 _LOGGER = logging.getLogger(__name__)
 
 AUTH_CALLBACK_NAME = 'api:spotify'
