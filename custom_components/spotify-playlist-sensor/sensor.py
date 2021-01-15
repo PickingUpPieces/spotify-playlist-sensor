@@ -20,7 +20,7 @@ from homeassistant.components.http import HomeAssistantView
 from homeassistant.core import callback
 
 DEPENDENCIES = ['http']
-REQUIREMENTS = ['spotipy-homeassistant==2.4.4.dev1']
+REQUIREMENTS = ['spotipy==2.16.0']
 
 __version__ = '0.0.2'
 _LOGGER = logging.getLogger(__name__)
@@ -204,7 +204,7 @@ class SpotifyPlaylistSensor(Entity):
                 image = ''
             uri = playlist['uri']
             id = i
-            self.hass.data[self._name][name] = {}
+            self.hass.data[self._name][name] = i
             self.hass.data[self._name][name]['name'] = name
             self.hass.data[self._name][name]['image'] = image
             self.hass.data[self._name][name]['uri'] = uri
