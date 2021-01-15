@@ -202,8 +202,8 @@ class SpotifyPlaylistSensor(Entity):
             except:
                 image = ''
             uri = playlist['uri']
-            id = i + 5
-            self.hass.data[self._name][i] = {}
+            id = i 
+            self.hass.data[self._name][] = {}
             self.hass.data[self._name][i]['name'] = name
             self.hass.data[self._name][i]['image'] = image
             self.hass.data[self._name][i]['uri'] = uri
